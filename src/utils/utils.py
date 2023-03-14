@@ -137,8 +137,6 @@ def log_hyperparameters(object_dict: dict) -> None:
     - Number of model parameters
     """
 
-    hparams = {}
-
     cfg = object_dict["cfg"]
     model = object_dict["model"]
     trainer = object_dict["trainer"]
@@ -147,10 +145,10 @@ def log_hyperparameters(object_dict: dict) -> None:
         log.warning("Logger not found! Skipping hyperparameter logging...")
         return
 
-    hparams["model"] = cfg["model"]
-
-    # save number of model parameters
-    hparams["model/params/total"] = sum(p.numel() for p in model.parameters())
+    hparams = {
+        "model": cfg["model"],
+        "model/params/total": sum((p.numel() for p in model.parameters())),
+    }
     hparams["model/params/trainable"] = sum(
         p.numel() for p in model.parameters() if p.requires_grad
     )
