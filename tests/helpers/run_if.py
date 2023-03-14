@@ -37,23 +37,7 @@ class RunIf:
             assert arg1 > 0
     """
 
-    def __new__(
-        self,
-        min_gpus: int = 0,
-        min_torch: Optional[str] = None,
-        max_torch: Optional[str] = None,
-        min_python: Optional[str] = None,
-        skip_windows: bool = False,
-        sh: bool = False,
-        tpu: bool = False,
-        fairscale: bool = False,
-        deepspeed: bool = False,
-        wandb: bool = False,
-        neptune: bool = False,
-        comet: bool = False,
-        mlflow: bool = False,
-        **kwargs,
-    ):
+    def __new__(cls, min_gpus: int = 0, min_torch: Optional[str] = None, max_torch: Optional[str] = None, min_python: Optional[str] = None, skip_windows: bool = False, sh: bool = False, tpu: bool = False, fairscale: bool = False, deepspeed: bool = False, wandb: bool = False, neptune: bool = False, comet: bool = False, mlflow: bool = False, **kwargs):
         """
         Args:
             min_gpus: min number of GPUs required to run test
